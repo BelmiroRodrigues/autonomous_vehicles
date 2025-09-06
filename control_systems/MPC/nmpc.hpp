@@ -14,9 +14,9 @@ public:
         double dt = 0.1,        // Intervalo de tempo (s)
         int N_pred = 10,        // Horizonte de previsão
         double max_delta_rad = 40.0 * M_PI / 180.0, // Delta máximo em radianos
-        double Q_offset = 3.0, // Peso para erro lateral
-        double Q_psi = 0.60,   // Peso para erro de orientação
-        double R_delta_rate = 0.1 // Peso para taxa de mudança de delta
+        double Q_offset = 2.5, // Peso para erro lateral
+        double Q_psi = 0.50,   // Peso para erro de orientação
+        double R_delta_rate = 0.2 // Peso para taxa de mudança de delta
     );
 
     // Função para calcular o ângulo de controle delta

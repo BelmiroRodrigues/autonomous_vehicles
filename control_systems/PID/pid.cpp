@@ -27,8 +27,8 @@ double PID::compute(double setpoint, double measured_value) {
     // Saída total do PID
     double output = proportional + integral_term + derivative;
 
-    // Limita a saída (ex.: para PWM entre -255 e 255, ajusta conforme teus motores)
-    output = std::clamp(output, -255.0, 255.0);
+    // Limita a saída (ex.: para PWM entre 0 e 255, ajusta conforme teus motores)
+    output = std::clamp(output, 0.0, 255.0);
 
     return output;
 }

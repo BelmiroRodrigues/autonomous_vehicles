@@ -140,6 +140,8 @@ void laneInferenceThread(TensorRTInference& trt, NMPCController& mpc, PID& pid, 
         double motor_pwm = 0.0;
         if (pid_dt >= 0.02) { // 50 ms → 20 Hz
             motor_pwm = pid.compute(setpoint_velocity, v_actual);
+            std::cout << "PWM now: " << motor_pwm << std::endl;
+
             backMotors.setSpeed(static_cast<int>(motor_pwm));
             pid_last_time = pid_now;
         }
@@ -255,7 +257,7 @@ int main() {
     FServo servo;
     SCurveProfile steering_profile(100.0, 300.0, 600.0);
     MovingAverage filter(5);
-    double setpoint_velocity = 0.4;
+    double setpoint_velocity = 0.3;
     //std::shared_ptr<CANMessageProcessor> messageProcessor;
     //std::unique_ptr<CanBusManager> canBusManager;
     std::thread obj_thread;
