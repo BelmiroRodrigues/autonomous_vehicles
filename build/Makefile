@@ -441,6 +441,54 @@ control_systems/MPC/nmpc.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/MPC/nmpc.cpp.s
 .PHONY : control_systems/MPC/nmpc.cpp.s
 
+control_systems/PID/SpeedPIDController.o: control_systems/PID/SpeedPIDController.cpp.o
+.PHONY : control_systems/PID/SpeedPIDController.o
+
+# target to build an object file
+control_systems/PID/SpeedPIDController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o
+.PHONY : control_systems/PID/SpeedPIDController.cpp.o
+
+control_systems/PID/SpeedPIDController.i: control_systems/PID/SpeedPIDController.cpp.i
+.PHONY : control_systems/PID/SpeedPIDController.i
+
+# target to preprocess a source file
+control_systems/PID/SpeedPIDController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.i
+.PHONY : control_systems/PID/SpeedPIDController.cpp.i
+
+control_systems/PID/SpeedPIDController.s: control_systems/PID/SpeedPIDController.cpp.s
+.PHONY : control_systems/PID/SpeedPIDController.s
+
+# target to generate assembly for a file
+control_systems/PID/SpeedPIDController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.s
+.PHONY : control_systems/PID/SpeedPIDController.cpp.s
+
+control_systems/PID/SpeedPIDTuner.o: control_systems/PID/SpeedPIDTuner.cpp.o
+.PHONY : control_systems/PID/SpeedPIDTuner.o
+
+# target to build an object file
+control_systems/PID/SpeedPIDTuner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o
+.PHONY : control_systems/PID/SpeedPIDTuner.cpp.o
+
+control_systems/PID/SpeedPIDTuner.i: control_systems/PID/SpeedPIDTuner.cpp.i
+.PHONY : control_systems/PID/SpeedPIDTuner.i
+
+# target to preprocess a source file
+control_systems/PID/SpeedPIDTuner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.i
+.PHONY : control_systems/PID/SpeedPIDTuner.cpp.i
+
+control_systems/PID/SpeedPIDTuner.s: control_systems/PID/SpeedPIDTuner.cpp.s
+.PHONY : control_systems/PID/SpeedPIDTuner.s
+
+# target to generate assembly for a file
+control_systems/PID/SpeedPIDTuner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/integrated_vison.dir/build.make CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.s
+.PHONY : control_systems/PID/SpeedPIDTuner.cpp.s
+
 control_systems/PID/pid.o: control_systems/PID/pid.cpp.o
 .PHONY : control_systems/PID/pid.o
 
@@ -633,6 +681,12 @@ help:
 	@echo "... control_systems/MPC/nmpc.o"
 	@echo "... control_systems/MPC/nmpc.i"
 	@echo "... control_systems/MPC/nmpc.s"
+	@echo "... control_systems/PID/SpeedPIDController.o"
+	@echo "... control_systems/PID/SpeedPIDController.i"
+	@echo "... control_systems/PID/SpeedPIDController.s"
+	@echo "... control_systems/PID/SpeedPIDTuner.o"
+	@echo "... control_systems/PID/SpeedPIDTuner.i"
+	@echo "... control_systems/PID/SpeedPIDTuner.s"
 	@echo "... control_systems/PID/pid.o"
 	@echo "... control_systems/PID/pid.i"
 	@echo "... control_systems/PID/pid.s"

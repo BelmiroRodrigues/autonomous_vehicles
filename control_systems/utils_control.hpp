@@ -4,6 +4,8 @@
 #include "LanesGeometry/lane.hpp"
 #include "MPC/nmpc.hpp"
 #include "PID/pid.hpp"
+#include "PID/SpeedPIDController.hpp"
+#include "PID/SpeedPIDTuner.hpp"
 #include "aux/scurve.hpp"
 #include "aux/MovingAverage.hpp"
 #include "aux/SpeedFilter.hpp"

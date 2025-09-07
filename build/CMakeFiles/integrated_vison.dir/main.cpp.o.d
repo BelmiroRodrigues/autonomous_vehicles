@@ -520,22 +520,29 @@ CMakeFiles/integrated_vison.dir/main.cpp.o: \
  /usr/local/include/casadi/core/filesystem.hpp \
  /usr/local/include/casadi/core/options.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/pid.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/scurve.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/MovingAverage.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/SpeedFilter.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/ZmqPublisher.hpp \
- /usr/local/include/zmq.hpp /usr/include/zmq.h /usr/include/c++/8/cassert \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/ZmqSubscriber.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/cam.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/LanesGeometry/infer.hpp \
- /usr/include/c++/8/condition_variable /usr/include/unistd.h \
- /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/../BackMotors/BackMotors.hpp \
+ /usr/include/unistd.h /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
  /usr/include/aarch64-linux-gnu/bits/environments.h \
  /usr/include/aarch64-linux-gnu/bits/confname.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd.h \
- /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/aarch64-linux-gnu/bits/unistd_ext.h /usr/include/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl2.h \
+ /usr/include/aarch64-linux-gnu/sys/ioctl.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctls.h \
+ /usr/include/aarch64-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/aarch64-linux-gnu/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
  /usr/include/c++/8/csignal /usr/include/signal.h \
  /usr/include/aarch64-linux-gnu/bits/signum.h \
  /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
@@ -573,22 +580,18 @@ CMakeFiles/integrated_vison.dir/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/aarch64-linux-gnu/bits/sigthread.h \
  /usr/include/aarch64-linux-gnu/bits/signal_ext.h \
+ /usr/include/linux/i2c-dev.h \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/scurve.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/MovingAverage.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/aux/SpeedFilter.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/ZmqPublisher.hpp \
+ /usr/local/include/zmq.hpp /usr/include/zmq.h /usr/include/c++/8/cassert \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/ZmqSubscriber.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/cam.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/LanesGeometry/infer.hpp \
+ /usr/include/c++/8/condition_variable \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/FServo/FServo.hpp \
- /usr/include/fcntl.h /usr/include/aarch64-linux-gnu/bits/fcntl.h \
- /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
- /usr/include/aarch64-linux-gnu/bits/fcntl2.h \
- /usr/include/linux/i2c-dev.h /usr/include/aarch64-linux-gnu/sys/ioctl.h \
- /usr/include/aarch64-linux-gnu/bits/ioctls.h \
- /usr/include/aarch64-linux-gnu/asm/ioctls.h \
- /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
- /usr/include/aarch64-linux-gnu/asm/ioctl.h \
- /usr/include/asm-generic/ioctl.h \
- /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
- /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/ControlAssembly.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/../BackMotors/BackMotors.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/../FServo/FServo.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/../Control/Controller.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/../Control/../FServo/FServo.hpp \

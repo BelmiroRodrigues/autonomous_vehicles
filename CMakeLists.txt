@@ -79,6 +79,8 @@ add_executable(integrated_vison
     control_systems/LanesGeometry/mask.cpp
     control_systems/MPC/nmpc.cpp
     control_systems/PID/pid.cpp
+    control_systems/PID/SpeedPIDController.cpp
+    control_systems/PID/SpeedPIDTuner.cpp
     control_systems/cam.cpp
     control_systems/LanesGeometry/infer.cpp
     control_systems/BackMotors/BackMotors.cpp

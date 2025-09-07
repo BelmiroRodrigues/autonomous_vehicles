@@ -309,9 +309,28 @@ int main() {
         if (!speed_sub->isConnected()) {
             throw std::runtime_error("Falha ao inicializar ZMQ Subscriber na porta 5555");
         }
-        speed_sub->start();  // Inicia o thread de receção
+        speed_sub->start();
+        std::this_thread::sleep_for(std::chrono::milliseconds(300)); // garantir fluxo de mensagens [4]
+
+/*         {
+            std::cout << "== PID GRID-SEARCH (real, via ZMQ) ==" << std::endl;
+            float dt = 0.03f;        // 33 Hz [2]
+            float sim_time = 6.0f;   // s por avaliação
+            float v_target = 0.6f;   // m/s para ensaio
+            float pwm_max = 40.0f;   // limitar PWM para segurança
+        
+            auto [kp, ki, kd] = auto_tune_pid_real(backMotors, current_speed_ms,
+                                                   dt, sim_time, v_target, pwm_max);
+            std::cout << "Tuned (real): Kp=" << kp << " Ki=" << ki << " Kd=" << kd << std::endl;
+            //pid.setKp(kp); pid.setKi(ki); pid.setKd(kd);
+            
+            backMotors.setSpeed(0);
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
+            std::cout << "== FIM TUNER ==" << std::endl;
+        } */
 
         camera.start();
+
         std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Espera 0.5s para primeiro frame
 
         // Lançar threads (usa obj_detector.get() para referência)

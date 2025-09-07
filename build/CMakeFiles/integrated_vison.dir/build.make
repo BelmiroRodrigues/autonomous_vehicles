@@ -181,10 +181,38 @@ CMakeFiles/integrated_vison.dir/control_systems/PID/pid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integrated_vison.dir/control_systems/PID/pid.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/pid.cpp -o CMakeFiles/integrated_vison.dir/control_systems/PID/pid.cpp.s
 
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.cpp
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.cpp
+
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.cpp > CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.i
+
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.cpp -o CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.s
+
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.cpp
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.cpp
+
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.cpp > CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.i
+
+CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.cpp -o CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.s
+
 CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/cam.cpp
 CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/cam.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.i: cmake_force
@@ -198,7 +226,7 @@ CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/LanesGeometry/infer.cpp
 CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/LanesGeometry/infer.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.i: cmake_force
@@ -212,7 +240,7 @@ CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.s: cmake
 CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/BackMotors/BackMotors.cpp
 CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/BackMotors/BackMotors.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.i: cmake_force
@@ -226,7 +254,7 @@ CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.s: cma
 CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/ControlAssembly.cpp
 CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/ControlAssembly.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.i: cmake_force
@@ -240,7 +268,7 @@ CMakeFiles/integrated_vison.dir/control_systems/Control/ControlAssembly.cpp.s: c
 CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/Controller.cpp
 CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/Control/Controller.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.i: cmake_force
@@ -254,7 +282,7 @@ CMakeFiles/integrated_vison.dir/control_systems/Control/Controller.cpp.s: cmake_
 CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/FServo/FServo.cpp
 CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o -MF CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o.d -o CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/FServo/FServo.cpp
 
 CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.i: cmake_force
@@ -268,7 +296,7 @@ CMakeFiles/integrated_vison.dir/control_systems/FServo/FServo.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/MCP2515Configurator.cpp
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o -MF CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o.d -o CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/MCP2515Configurator.cpp
 
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.i: cmake_force
@@ -282,7 +310,7 @@ CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Configurator.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/CANMessageProcessor.cpp
 CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o -MF CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o.d -o CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/CANMessageProcessor.cpp
 
 CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.i: cmake_force
@@ -296,7 +324,7 @@ CMakeFiles/integrated_vison.dir/MCP2515/CANMessageProcessor.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/MCP2515Controller.cpp
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o -MF CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o.d -o CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/MCP2515Controller.cpp
 
 CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.i: cmake_force
@@ -310,7 +338,7 @@ CMakeFiles/integrated_vison.dir/MCP2515/MCP2515Controller.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/SPIController.cpp
 CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o -MF CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o.d -o CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/SPIController.cpp
 
 CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.i: cmake_force
@@ -324,7 +352,7 @@ CMakeFiles/integrated_vison.dir/MCP2515/SPIController.cpp.s: cmake_force
 CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o: CMakeFiles/integrated_vison.dir/flags.make
 CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o: /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/CanBusManager.cpp
 CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o: CMakeFiles/integrated_vison.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o -MF CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o.d -o CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.o -c /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/MCP2515/CanBusManager.cpp
 
 CMakeFiles/integrated_vison.dir/MCP2515/CanBusManager.cpp.i: cmake_force
@@ -345,6 +373,8 @@ integrated_vison_OBJECTS = \
 "CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/mask.cpp.o" \
 "CMakeFiles/integrated_vison.dir/control_systems/MPC/nmpc.cpp.o" \
 "CMakeFiles/integrated_vison.dir/control_systems/PID/pid.cpp.o" \
+"CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o" \
+"CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o" \
 "CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o" \
 "CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o" \
 "CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o" \
@@ -368,6 +398,8 @@ integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/mask.cpp.o
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/MPC/nmpc.cpp.o
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/PID/pid.cpp.o
+integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDController.cpp.o
+integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/PID/SpeedPIDTuner.cpp.o
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/cam.cpp.o
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/LanesGeometry/infer.cpp.o
 integrated_vison: CMakeFiles/integrated_vison.dir/control_systems/BackMotors/BackMotors.cpp.o
@@ -461,7 +493,7 @@ integrated_vison: /usr/lib/aarch64-linux-gnu/libnvonnxparser.so
 integrated_vison: /usr/local/lib/libcasadi.so
 integrated_vison: /usr/lib/aarch64-linux-gnu/libzmq.so
 integrated_vison: CMakeFiles/integrated_vison.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable integrated_vison"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable integrated_vison"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/integrated_vison.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
