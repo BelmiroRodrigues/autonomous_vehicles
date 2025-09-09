@@ -30,6 +30,10 @@ double PID::compute(double setpoint, double measured_value) {
     // Limita a saída (ex.: para PWM entre 0 e 255, ajusta conforme teus motores)
     output = std::clamp(output, 0.0, 255.0);
 
+    if (output >= 255.0 && error > 0) integral_ -= error * dt;  // Evita acumulação excessiva
+    else if (output <= 0.0 && error < 0) integral_ += error * dt;
+
+
     return output;
 }
 

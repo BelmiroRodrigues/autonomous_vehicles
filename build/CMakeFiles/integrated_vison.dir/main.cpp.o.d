@@ -522,6 +522,7 @@ CMakeFiles/integrated_vison.dir/main.cpp.o: \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/pid.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDTuner.hpp \
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/SpeedPIDController.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/PID/../BackMotors/BackMotors.hpp \
  /usr/include/unistd.h /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
  /usr/include/aarch64-linux-gnu/bits/environments.h \
@@ -610,7 +611,4 @@ CMakeFiles/integrated_vison.dir/main.cpp.o: \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/control_systems/../MCP2515/CANMessageProcessor.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/object_detection/fps.hpp \
  /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/object_detection/frame.hpp \
- /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/object_detection/inferObject.hpp \
- /usr/include/c++/8/filesystem /usr/include/c++/8/bits/fs_fwd.h \
- /usr/include/c++/8/bits/fs_path.h /usr/include/c++/8/codecvt \
- /usr/include/c++/8/bits/fs_dir.h /usr/include/c++/8/bits/fs_ops.h
+ /home/jetson/Desktop/Team06/Team06_ADS_Autonomous-Lane-Detection/object_detection/inferObject.hpp

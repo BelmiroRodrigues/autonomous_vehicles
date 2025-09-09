@@ -2,8 +2,6 @@
 #include "object_detection/fps.hpp"              // FPSCalculator
 #include "object_detection/frame.hpp"            // FrameSkipper
 #include "object_detection/inferObject.hpp"      // TensorRTYOLO (objetos)
-#include <filesystem>
-
 
 // Variáveis globais atómicas
 std::atomic<bool> keep_running{true};
@@ -41,7 +39,7 @@ void signalHandler(int signum) {
 }
 
 // Thread de objetos
-void objectInferenceThread(TensorRTYOLO& detector, FrameSkipper& frame_skipper, FPSCalculator& fps_calculator, ZmqPublisher* lane_pub) {
+void objectInferenceThread(TensorRTYOLO& detector, FrameSkipper& frame_skipper, FPSCalculator& fps_calculator, ZmqPublisher* obj_pub) {
     std::vector<Detection> last_detections;
     while (keep_running.load()) {
         cv::Mat frame;
@@ -78,11 +76,11 @@ void objectInferenceThread(TensorRTYOLO& detector, FrameSkipper& frame_skipper, 
             std::cout << std::endl;
 
             // Publicar nomes dos objetos via ZMQ na porta 5558
-            if (lane_pub && lane_pub->isConnected()) {
+            if (obj_pub && obj_pub->isConnected()) {
                 for (const auto& det : detections) {
                     std::stringstream ss;
                     ss << det.class_name;
-                    lane_pub->publishMessage(ss.str());
+                    obj_pub->publishMessage(ss.str());
                 }
             }
         }
@@ -319,7 +317,7 @@ int main() {
             float v_target = 0.6f;   // m/s para ensaio
             float pwm_max = 40.0f;   // limitar PWM para segurança
         
-            auto [kp, ki, kd] = auto_tune_pid_real(backMotors, current_speed_ms,
+            auto [kp, ki, kd] = autotune_speed_two_stage(backMotors, current_speed_ms,
                                                    dt, sim_time, v_target, pwm_max);
             std::cout << "Tuned (real): Kp=" << kp << " Ki=" << ki << " Kd=" << kd << std::endl;
             //pid.setKp(kp); pid.setKi(ki); pid.setKd(kd);
@@ -327,6 +325,8 @@ int main() {
             backMotors.setSpeed(0);
             std::this_thread::sleep_for(std::chrono::milliseconds(300));
             std::cout << "== FIM TUNER ==" << std::endl;
+            cleanup(camera, servo, backMotors, obj_thread, lane_thread, lane_pub, ctrl_pub, obj_pub, speed_sub);
+            return 0;
         } */
 
         camera.start();

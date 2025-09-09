@@ -27,7 +27,7 @@ bool BackMotors::init_motors(){
 		int 	preScale;
 		uint8_t oldMode, newMode;
 
-		preScale = static_cast<int>(std::floor(25000000.0 / 4096.0 / 300 - 1));
+		preScale = static_cast<int>(std::floor(25000000.0 / 4096.0 / 240 - 1));
 		oldMode = readByteData(_fdMotor, 0x00);
 		newMode = (oldMode & 0x7F) | 0x10;
 
