@@ -10,7 +10,7 @@ public:
     void reset();
 
 private:
-    double kp_ = 15.0;    // Ganho proporcional
+    double kp_ = 12.0;    // Ganho proporcional
     double ki_ = 3.0;    // Ganho integral
     double kd_ = 0.5;    // Ganho derivativo
 
