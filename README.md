@@ -32,17 +32,26 @@
 
 ## Table of Contents
 
-1. [Quick Start](#quick-start)
-2. [Dataset Layout](#dataset-layout)
-3. [Train](#train)
-4. [Evaluate & Visualize](#evaluate--visualize)
-5. [Inference (Python)](#inference-python)
-6. [Export to ONNX / Jetson](#export-to-onnx--jetson)
-7. [Model Architecture & Variants](#model-architecture--variants)
-8. [Quality, Tests & CI](#quality-tests--ci)
-9. [Project Structure](#project-structure)
-10. [FAQ](#faq)
-11. [References](#references)
+- [LineNet — Lightweight Lane‑Line Segmentation (PyTorch)](#linenet--lightweight-laneline-segmentation-pytorch)
+  - [Highlights](#highlights)
+  - [Table of Contents](#table-of-contents)
+  - [Quick Start](#quick-start)
+    - [1) Environment](#1-environment)
+    - [2) Data paths](#2-data-paths)
+  - [Dataset Layout](#dataset-layout)
+  - [Train](#train)
+  - [Evaluate \& Visualize](#evaluate--visualize)
+  - [Inference (Python)](#inference-python)
+  - [Export to ONNX / Jetson](#export-to-onnx--jetson)
+  - [Model Architecture \& Variants](#model-architecture--variants)
+  - [Quality, Tests \& CI](#quality-tests--ci)
+    - [1) Unit tests (`tests/test_smoke.py`)](#1-unit-tests-teststest_smokepy)
+    - [2) GitHub Actions (`.github/workflows/ci.yml`)](#2-github-actions-githubworkflowsciyml)
+  - [Project Structure](#project-structure)
+  - [FAQ](#faq)
+  - [Results \& Visuals (Artifacts)](#results--visuals-artifacts)
+  - [References](#references)
+- [autonomous\_vehicles](#autonomous_vehicles)
 
 ---
 
@@ -305,4 +314,4 @@ jobs:
 
 ---
 
- 
+ # autonomous_vehicles
