@@ -1,363 +1,105 @@
-#include <opencv2/opencv.hpp>
-#include <NvInfer.h>
-#include <cuda_runtime_api.h>
-#include <fstream>
-#include <thread>
-#include <atomic>
-#include <chrono>
-#include <iostream>
-#include <iomanip>
+#include "utils.hpp"
+#include <filesystem>
 
-using namespace nvinfer1;
-
-// Logger para TensorRT
-class Logger : public ILogger {
-    void log(Severity severity, const char* msg) noexcept override {
-        if (severity <= Severity::kWARNING)
-            std::cout << msg << std::endl;
-    }
-};
-
-class TensorRTInference {
-public:
-    TensorRTInference(const std::string& engine_path) {
-        std::ifstream engineFile(engine_path, std::ios::binary);
-        if (!engineFile) throw std::runtime_error("Error engine");
-
-        engineFile.seekg(0, engineFile.end);
-        size_t fsize = engineFile.tellg();
-        engineFile.seekg(0, engineFile.beg);
-
-        std::vector<char> engineData(fsize);
-        engineFile.read(engineData.data(), fsize);
-
-        runtime = createInferRuntime(logger);
-        engine = runtime->deserializeCudaEngine(engineData.data(), fsize);
-        context = engine->createExecutionContext();
-
-        allocateBuffers();
-    }
-
-    ~TensorRTInference() {
-        for (auto& mem : inputBuffers) cudaFree(mem.device);
-        for (auto& mem : outputBuffers) cudaFree(mem.device);
-    }
-
-    struct Buffer {
-        void* device;
-        float* host;
-        size_t size;
-    };
-
-    std::vector<float> infer(const std::vector<float>& inputData) {
-        cudaMemcpy(inputBuffers[0].device, inputData.data(), inputBuffers[0].size, cudaMemcpyHostToDevice);
-        context->executeV2(bindings.data());
-        cudaMemcpy(outputBuffers[0].host, outputBuffers[0].device, outputBuffers[0].size, cudaMemcpyDeviceToHost);
-        return std::vector<float>(outputBuffers[0].host, outputBuffers[0].host + outputBuffers[0].size / sizeof(float));
-    }
-
-private:
-    Logger logger;
-    IRuntime* runtime = nullptr;
-    ICudaEngine* engine = nullptr;
-    IExecutionContext* context = nullptr;
-    std::vector<Buffer> inputBuffers;
-    std::vector<Buffer> outputBuffers;
-    std::vector<void*> bindings;
-
-    void allocateBuffers() {
-        int nbBindings = engine->getNbBindings();
-        inputBuffers.resize(1);
-        outputBuffers.resize(1);
-        bindings.resize(nbBindings);
-
-        for (int i = 0; i < nbBindings; ++i) {
-            Dims dims = engine->getBindingDimensions(i);
-            size_t vol = 1;
-            for (int j = 0; j < dims.nbDims; ++j) vol *= dims.d[j];
-            size_t typeSize = sizeof(float);
-
-            void* deviceMem;
-            cudaMalloc(&deviceMem, vol * typeSize);
-            float* hostMem = new float[vol];
-
-            bindings[i] = deviceMem;
-            if (engine->bindingIsInput(i)) {
-                inputBuffers[0] = {deviceMem, hostMem, vol * typeSize};
-            } else {
-                outputBuffers[0] = {deviceMem, hostMem, vol * typeSize};
-            }
-        }
-    }
-};
-
-
-class CSICamera {
-public:
-    CSICamera(int width, int height, int fps) {
-        std::ostringstream pipeline;
-        pipeline << "nvarguscamerasrc ! "
-         << "video/x-raw(memory:NVMM), width=" << width << ", height=" << height
-         << ", format=NV12, framerate=" << fps << "/1 ! "
-         << "nvvidconv ! "
-         << "video/x-raw, format=BGRx ! "
-         << "videoconvert ! "
-         << "video/x-raw, format=BGR ! appsink";
-            cap.open(pipeline.str(), cv::CAP_GSTREAMER);
-            if (!cap.isOpened()) {
-                std::cerr << "Erro: Não foi possível abrir a câmera CSI. Usando fallback." << std::endl;
-      
-            }
-    }
-    void start() {
-        running = true;
-        thread = std::thread(&CSICamera::update, this);
-    }
-    void stop() {
-        running = false;
-        if (thread.joinable()) thread.join();
-        cap.release();
-    }
-    cv::Mat read() const {
-        return frame.clone();
-    }
-private:
-    cv::VideoCapture cap;
-    cv::Mat frame;
-    std::thread thread;
-    std::atomic<bool> running{false};
-    void update() {
-        while (running) {
-            cv::Mat f;
-            cap.read(f);
-            if (!f.empty()) frame = f;
-        }
-    }
-};
-
-
-
-
-
-
-cv::Mat applyCLAHE(const cv::Mat& rgb) {
-    cv::Mat lab;
-    cv::cvtColor(rgb, lab, cv::COLOR_RGB2Lab);
-    std::vector<cv::Mat> lab_channels(3);
-    cv::split(lab, lab_channels);
-    cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(3.0, cv::Size(8, 8));
-    clahe->apply(lab_channels[0], lab_channels[0]);
-    cv::merge(lab_channels, lab);
-    cv::Mat result;
-    cv::cvtColor(lab, result, cv::COLOR_Lab2RGB);
-    return result;
+void signalHandler(int signum) {
+    std::cout << "\nInterrupt signal (" << signum << ") received." << std::endl;
+    keep_running.store(false);
 }
-
-float compute_dynamic_threshold(const cv::Mat& frame) {
-    cv::Mat gray;
-    cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
-    double mean_val = cv::mean(gray)[0];
-    return (mean_val < 80) ? 0.05f : 0.01f;  // Se estiver muito escuro, usamos limiar mais baixo
-}
-
-
-
-
-
-std::vector<float> preprocess_frame(const cv::Mat& frame) {
-    cv::Mat resized;
-    cv::resize(frame, resized, cv::Size(280, 280));
-    cv::cvtColor(resized, resized, cv::COLOR_BGR2RGB);
-
-    // Aplicar CLAHE corretamente
-    cv::Mat resized_uint8;
-    resized.convertTo(resized_uint8, CV_8UC3);
-    resized_uint8 = applyCLAHE(resized_uint8);
-    resized_uint8.convertTo(resized, CV_32FC3, 1.0 / 255);
-
-    // Normalizar
-    std::vector<cv::Mat> channels(3);
-    cv::split(resized, channels);
-    channels[0] = (channels[0] - 0.485f) / 0.229f;
-    channels[1] = (channels[1] - 0.456f) / 0.224f;
-    channels[2] = (channels[2] - 0.406f) / 0.225f;
-    cv::merge(channels, resized);
-
-    std::vector<float> inputData;
-    for (int i = 0; i < 3; ++i) {
-        inputData.insert(inputData.end(), (float*)channels[i].datastart, (float*)channels[i].dataend);
-    }
-    return inputData;
-}
-
-
-// Pós-processamento simples da máscara
-cv::Mat postprocess_org(const float* ll_output, cv::Mat& original_frame) {
-    const int height = 280, width = 280;
-    cv::Mat ll_mask(height, width, CV_32FC1, (void*)ll_output);
-    cv::Mat ll_bin;
-    cv::threshold(ll_mask, ll_bin, 0.2, 255, cv::THRESH_BINARY);
-    ll_bin.convertTo(ll_bin, CV_8UC1);
-    cv::Mat ll_resized;
-    cv::resize(ll_bin, ll_resized, original_frame.size(), 0, 0, cv::INTER_NEAREST);
-
- 
-
- 
-    cv::Mat color_mask = cv::Mat::zeros(original_frame.size(), CV_8UC3);
-    color_mask.setTo(cv::Scalar(255, 0, 255), ll_resized);
-    cv::Mat overlay;
-    cv::addWeighted(original_frame, 0.7, color_mask, 0.7, 0, overlay);
-    return overlay;
-}
-
-
-cv::Mat postprocess(const float* ll_output, cv::Mat& original_frame) {
-    const int height = 280, width = 280;
-    // Cria a máscara a partir da saída do modelo
-    cv::Mat ll_mask(height, width, CV_32FC1, (void*)ll_output);
-    cv::Mat ll_bin;
-    // Threshold agressivo para capturar mais pixels de linha
-
-    float thresh = compute_dynamic_threshold(original_frame);
-    //cv::threshold(ll_mask, ll_bin, thresh, 255, cv::THRESH_BINARY);
-
-
-    cv::GaussianBlur(ll_mask, ll_mask, cv::Size(3, 3), 0);
-    cv::threshold(ll_mask, ll_bin, thresh, 255, cv::THRESH_BINARY);
-
-  
-
-//    cv::threshold(ll_mask, ll_bin, 0.1, 255, cv::THRESH_BINARY);
-    ll_bin.convertTo(ll_bin, CV_8UC1);
-
-    // Kernel maior para morfologia e dilatação
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
-    cv::morphologyEx(ll_bin, ll_bin, cv::MORPH_OPEN, kernel);
-   // cv::morphologyEx(ll_bin, ll_bin, cv::MORPH_CLOSE, kernel);
-    cv::morphologyEx(ll_bin, ll_bin, cv::MORPH_GRADIENT, kernel);
-
-    // Engrossa as linhas
-//    cv::dilate(ll_bin, ll_bin, kernel);
-
-
-    cv::Mat ll_resized;
-    cv::resize(ll_bin, ll_resized, original_frame.size(), 0, 0, cv::INTER_LINEAR);
-
-    // Cria máscara colorida para overlay
-    cv::Mat color_mask = cv::Mat::zeros(original_frame.size(), CV_8UC3);
-    color_mask.setTo(cv::Scalar(255, 0, 0), ll_resized);
-
- //  cv::morphologyEx(color_mask,color_mask, cv::MORPH_OPEN, kernel);
-  // cv::morphologyEx(color_mask,color_mask, cv::MORPH_CLOSE, kernel);
-
-  
-
-
-    // Overlay mais forte para destacar as linhas
-    cv::Mat overlay;
-    cv::addWeighted(original_frame, 0.6, color_mask, 1.0, 0, overlay);
-
-   // cv::imshow("Mask", color_mask);
-
-    return overlay;
-}
-
-
-cv::Mat postprocess_2(const float* ll_output, cv::Mat& original_frame) {
-    const int height = 280, width = 280;
-
-    // Converte saída em máscara flutuante
-    cv::Mat ll_mask(height, width, CV_32FC1, (void*)ll_output);
-
-    // Aplica blur para suavizar ruído
-    cv::Mat blurred;
-    cv::GaussianBlur(ll_mask, blurred, cv::Size(5, 5), 0);
-
-    // Converte para 8 bits para aplicar adaptiveThreshold
-    blurred.convertTo(blurred, CV_8UC1, 255.0);
-
-    // Adaptive threshold para linhas mais locais e robustas
-    cv::Mat ll_bin;
-    cv::adaptiveThreshold(
-        blurred, ll_bin,
-        255,
-        cv::ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv::THRESH_BINARY,
-        11, 2
-    );
-
-    // Remove ruído: apenas contornos grandes
-    std::vector<std::vector<cv::Point>> contours;
-    cv::findContours(ll_bin, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-
-    cv::Mat contour_mask = cv::Mat::zeros(ll_bin.size(), CV_8UC1);
-    for (const auto& c : contours) {
-        if (cv::contourArea(c) > 150) { // ignora manchas pequenas
-            cv::drawContours(contour_mask, std::vector<std::vector<cv::Point>>{c}, -1, 255, cv::FILLED);
-        }
-    }
-
-    // Redimensiona para o tamanho do frame
-    cv::Mat ll_resized;
-    cv::resize(contour_mask, ll_resized, original_frame.size(), 0, 0, cv::INTER_AREA);
-
-    // Cria uma máscara colorida em amarelo
-    cv::Mat color_mask = cv::Mat::zeros(original_frame.size(), CV_8UC3);
-    color_mask.setTo(cv::Scalar(0, 255, 255), ll_resized); // Amarelo: (B,G,R)
-
-    // Overlay com mistura mais visível
-    cv::Mat overlay;
-    cv::addWeighted(original_frame, 0.8, color_mask, 0.4, 0, overlay);
-
-
-    cv::imshow("Raw Output Mask", blurred);
-
-    return overlay;
-}
-
-
 
 int main() {
+    std::signal(SIGINT, signalHandler);
+
+    CSICamera camera(640, 480, 15);
+    std::unique_ptr<TensorRTYOLO> obj_detector;
+    std::unique_ptr<TensorRTInference> lane_trt;
+    FPSCalculator fps_calculator(30);
+    FrameSkipper obj_skipper(FrameSkipper::FIXED, 20, 15.0);
+    FrameSkipper lane_skipper(FrameSkipper::FIXED, 8, 15.0);
+    NMPCController mpc;
+    PID pid;
+    double setpoint_velocity = 0.4;
+    std::thread obj_thread;
+    std::thread lane_thread;
+    zmq::context_t zmq_context(1);
+    ZmqPublisher* lane_pub = nullptr; // Para porta 5558 (object)
+    ZmqPublisher* ctrl_pub = nullptr; // Para porta 5560 (throttle e steering)
+    ZmqPublisher* obj_pub = nullptr; // Para porta 5559 (object)
+    ZmqSubscriber* speed_sub = nullptr; // Novo: Para porta 5555 (speed)
+
     try {
-        TensorRTInference trt("model.engine");
-        CSICamera cam(280, 280, 30);
-        cam.start();
+        std::cout << "Initializing integrated system..." << std::endl;
+        std::string obj_engine_path = "../engines/best.engine";
+        std::ifstream check_obj(obj_engine_path);
+        if (!check_obj.good()) throw std::runtime_error("Engine de objetos não encontrado ou inacessível: " + obj_engine_path);
+        obj_detector = std::make_unique<TensorRTYOLO>(obj_engine_path, 640);
+        std::cout << "Object engine loaded: " << obj_engine_path << std::endl;
 
-        std::cout << "Pressione 'q' para sair" << std::endl;
-        int frameCount = 0;
-        auto start = std::chrono::steady_clock::now();
- 
+        std::string lane_engine_path = "../engines/model.engine";
+        std::ifstream check_lane(lane_engine_path);
+        if (!check_lane.good()) throw std::runtime_error("Lane engine not found or inaccessible: " + lane_engine_path);
+        lane_trt = std::make_unique<TensorRTInference>(lane_engine_path);
+        std::cout << "Lane engine loaded: " << lane_engine_path << std::endl;
 
-        while (true) {
-            cv::Mat frame = cam.read();
-            if (frame.empty()) continue;
+        // ZMQ publishers
+        lane_pub = new ZmqPublisher(zmq_context, "127.0.0.1", 5558, "tcp");
+        if (!lane_pub->isConnected()) throw std::runtime_error("Failed to initialize ZMQ on port 5558");
 
-            std::vector<float> input = preprocess_frame(frame);
-            auto output = trt.infer(input);
-          cv::Mat result = postprocess(output.data(), frame);
-  
+        ctrl_pub = new ZmqPublisher(zmq_context, "127.0.0.1", 5560, "tcp");
+        if (!ctrl_pub->isConnected()) throw std::runtime_error("Failed to initialize ZMQ on port 5560");
 
-            cv::imshow("LineNet Lane Detection", result);
+        obj_pub = new ZmqPublisher(zmq_context, "127.0.0.1", 5559, "tcp");
+        if (!obj_pub->isConnected()) throw std::runtime_error("Failed to initialize ZMQ on port 5559");
 
-            if (cv::waitKey(1) == 'q') break;
-
-            frameCount++;
-            if (frameCount % 30 == 0) {
-                auto now = std::chrono::steady_clock::now();
-                double fps = 30.0 / std::chrono::duration<double>(now - start).count();
-                std::cout << "FPS: " << std::fixed << std::setprecision(1) << fps << std::endl;
-                start = now;
-            }
+        speed_sub = new ZmqSubscriber(zmq_context, "127.0.0.1", 5555, current_speed_ms);
+        if (!speed_sub->isConnected()) {
+            throw std::runtime_error("Failed to initialize ZMQ Subscriber on port 5555");
         }
-        cam.stop();
-        cv::destroyAllWindows();
+        speed_sub->start();
+        camera.start();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+        obj_thread = std::thread(objectInferenceThread, std::ref(*obj_detector), std::ref(obj_skipper), std::ref(fps_calculator), obj_pub);
+        lane_thread = std::thread(laneInferenceThread, std::ref(*lane_trt), std::ref(mpc), std::ref(pid), setpoint_velocity, std::ref(lane_skipper), lane_pub, ctrl_pub);
+        std::cout << "Threads launched. Press 'q' to exit." << std::endl;
+        int frame_count = 0;
+        int processed_frames = 0;
+        int skipped_frames = 0;
+        while (keep_running.load()) {
+            cv::Mat frame = camera.read();
+            if (frame.empty()) continue;
+            frame_count++;
+            {
+                std::unique_lock lock_obj(mtx_objects);
+                frame_queue_objects.push(frame.clone());
+                cv_objects.notify_one();
+            }
+            {
+                std::unique_lock lock_lane(mtx_lanes);
+                frame_queue_lanes.push(frame.clone());
+                cv_lanes.notify_one();
+            }
+            {
+                std::unique_lock lock(mtx_results);
+                cv_results.wait(lock, [&] { return results_ready || !keep_running.load(); });
+                if (!keep_running.load()) break;
+                results_ready = false;
+            }
+            double smooth_fps = fps_calculator.getSmoothFPS();
+            cv::Mat displayed = combineAndDraw(frame, latest_objects, latest_lanes, smooth_fps, processed_frames, skipped_frames);
+            if (!displayed.empty()) cv::imshow("Integrated Detection", displayed);
+            cv::imshow("Integrated Detection", displayed);
+            char key = cv::waitKey(1) & 0xFF;
+            if (key == 'q') keep_running.store(false);
+            processed_frames++;
+        }
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Runtime error (initialization failure): " << e.what() << std::endl;
+        keep_running.store(false);
     } catch (const std::exception& e) {
-        std::cerr << "Erro: " << e.what() << std::endl;
-        return -1;
+        std::cerr << "General error: " << e.what() << std::endl;
+        keep_running.store(false);
     }
+
+    cleanup(camera, obj_thread, lane_thread, lane_pub, ctrl_pub, obj_pub, speed_sub);
     return 0;
 }
-//gst-launch-1.0 nvarguscamerasrc ! nvvidconv ! xvimagesink
-//sudo systemctl restart nvargus-daemon
-
